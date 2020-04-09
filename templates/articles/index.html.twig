@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des articles!{% endblock %}
+
+{% block body %}
+<h1>Liste des articles</h1>
+{% for article in articles %}
+<h2>{{ article.titre }}</h2>
+<div>{{ article.contenu }}</div>
+<h2><a href="{{ path('actualites_article', {'slug': article.slug}) }}">{{ article.titre }}</a></h2>
+{% endfor %}
+<h2><a href="{{ path('actualites_ajoutarticle') }}">ajouter un article</a></h2>
+{% endblock %}

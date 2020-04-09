@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ article.titre }}{% endblock %}
+{% block body %}
+<h1>{{ article.titre }}</h1>
+<p>{{ article.createdAt|date }} - Commentaires : {{ commentaire|length }}</p>
+<div>{{ article.contenu|raw }}</div>
+<p>Catégories :
+    {% for categorie in article.categorie %}
+    {{ categorie.nom }}
+    {% endfor %}
+</p>
+
+<h2>Commentaires</h2>
+{% for commentaire in commentaire %}
+<!--{# Se lit "Pour chaque commentaire dans commentaires" #}-->
+<p>Commentaire écrit par {{ commentaire.pseudo }} le {{ commentaire.createdAt|date }}</p>
+<p>{{ commentaire.contenu }}</p>
+{% else %}
+<p>Il n'y a pas encore de commentaire, publiez le premier !</p>
+{% endfor %}
+
+<div class='container mt-5'>
+    <div class="row">
+    <h1>Commenter l'article</h1>
+    <p>{{form_start(form)}}</p>
+    </div>
+    <div class="row">
+    <div class="col-md-12 mt-3">{{form_row(form.contenu)}}</div>
+    <div class="col-md-12 mt-3">{{form_row(form.email)}}</div>
+    </div>
+     {{form_end(form)}}
+    </div> 
+{% endblock %}
